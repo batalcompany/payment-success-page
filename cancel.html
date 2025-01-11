@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Success</title>
+  <script>
+    // Auto-close the page after 5 seconds (1000 milliseconds)
+    setTimeout(() => {
+      if (window.opener) {
+        // If opened in a new tab or window, try to close it
+        window.opener.postMessage('payment_cancelled', '*'); // Send a message back to the parent page
+        window.close();
+      } else {
+        // Redirect to a fallback URL if unable to close
+        window.location.href = 'motion://motion.com/politicianSearchVerificationAfter'; // Replace with your app's deep link
+      }
+    }, 300); // Timeout duration in milliseconds
+  </script>
+</head>
+<body>
+  <h1>Payment Cancelled</h1>
+  <p>This page will automatically close or redirect you to the app.</p>
+</body>
+</html>
